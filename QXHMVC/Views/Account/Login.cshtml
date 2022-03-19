@@ -1,0 +1,77 @@
+﻿@using QXHMVC.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登录";
+}
+<style>
+    body {
+        background-image: url('../../images/Kreuzbund_friends.jpg');
+        background-size: cover;
+    }
+    .content {
+        background-color: rgba(255, 255, 255, .50);
+        border-radius: 10px;
+    }
+    .btn {
+        
+        height: 40px;
+        background-color: rgba(58, 102, 200, .50);
+        font-size: 16px;
+        color: white;
+    }
+</style>
+<h2>@ViewBag.Title</h2>
+<div class="row">
+    <div class="col-md-8 content">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4></h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group form">
+                    
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "邮箱"})
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control",@placeholder = "密码" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            下次自动登录
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="登录" class="btn btn-default form-control" />
+                    </div>
+                </div>
+                <p>
+                    还没有账号？@Html.ActionLink("立即注册", "Register")
+                </p>
+                    <p>
+                        @Html.ActionLink("忘记密码", "ForgotPassword")
+                    </p>
+            }
+        </section>
+    </div>
+    @*<div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

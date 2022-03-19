@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - 青乡汇</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("青乡汇", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" ,@style= "background: #076CE0;color:white;" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("首页", "Index", "Home")</li>
+                    <li>@Html.ActionLink("发布需求", "Index", "Villages")</li>
+                    <li>@Html.ActionLink("优秀案例展示", "AnliShow", "Home")</li>
+                    <li>@Html.ActionLink("农村电商", "RuralEC", "Home")</li>
+                    <li>@Html.ActionLink("关于青乡汇", "About", "Home")</li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="margin-top:100px">
+        @RenderBody()
+        <footer style="margin-top:50px">
+            <p>&copy; 2021 - @DateTime.Now.Year 青乡汇</p>
+            <p>浙ICP备2022000135号 浙公网安备33078102100239号</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
